@@ -1,0 +1,195 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json",
+  "handler": "Microsoft.Compute.MultiVm",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "basics": [
+    ],
+
+    "steps": [
+      {
+        "name": "vmSettings",
+        "label": "Virtual Machine Settings",
+        "subLabel": {
+          "preValidation": "Required",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "Virtual Machine Settings",
+        "elements": [
+          {
+            "name": "adminUsername",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "VM user name",
+            "defaultValue": "",
+            "toolTip": "",
+            "constraints": {
+              "required": true
+            },
+            "osPlatform": "Windows"
+          },
+          {
+            "name": "adminPassword",
+            "type": "Microsoft.Compute.CredentialsCombo",
+            "label": {
+              "password": "VM user password",
+              "confirmPassword": "Confirm password"
+            },
+            "toolTip": "",
+            "constraints": {
+              "required": "true"
+            },
+            "options": {
+              "hideConfirmation": false
+            },
+            "osPlatform": "Windows"
+          },
+          {
+            "name": "virtualMachineSize",
+            "type": "Microsoft.Compute.SizeSelector",
+            "label": "VM size",
+            "toolTip": "Select VM Size",
+            "recommendedSizes": [
+              "Standard_DS1_v2"
+            ],
+            "constraints": {
+              "excludedSizes": [
+                "Basic_A0",
+                "Basic_A1",
+                "Basic_A2",
+                "Basic_A3",
+                "Basic_A4",
+                "Standard_A0",
+                "Standard_A1"
+              ]
+            },
+            "osPlatform": "Windows",
+            "count": 1
+          }
+
+        ]
+      },
+      {
+        "name": "moveitSettings",
+        "label": "MOVEit Transfer Settings",
+        "subLabel": {
+          "preValidation": "Required",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "MOVEit Transfer Settings",
+        "elements": [
+          {
+            "name": "mi_publicHostname",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Public hostname",
+            "toolTip": "Enter the hostname to which you will assign this VM once it is running"
+          },
+
+          {
+            "name": "mi_sysadminPassword",
+            "type": "Microsoft.Compute.CredentialsCombo",
+            "label": {
+              "password": "MOVEit sysadmin password",
+              "confirmPassword": "Confirm password"
+            },
+            "toolTip": "",
+            "constraints": {
+              "required": "true"
+            },
+            "options": {
+              "hideConfirmation": false
+            },
+            "osPlatform": "Windows"
+          }
+
+        ]
+      },
+
+      {
+        "name": "emailSettings",
+        "label": "Email Settings",
+        "subLabel": {
+          "preValidation": "Required",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "Email Settings",
+        "elements": [
+          {
+            "name": "mi_emailTo",
+            "type": "Microsoft.Common.TextBox",
+            "label": "'To' address for error emails",
+            "toolTip": "Address to which emails will be sent when there is a serious error",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_emailFrom",
+            "type": "Microsoft.Common.TextBox",
+            "label": "'From' address for error emails",
+            "toolTip": "'From' address used for error emails",
+            "constraints": {
+              "required": true
+            }
+          },
+
+          {
+            "name": "mi_smtpHost",
+            "type": "Microsoft.Common.TextBox",
+            "label": "SMTP hostname",
+            "toolTip": "Hostname of the SMTP server to use to deliver email.  You can set up an account with various third-party providers, including SocketLabs.com",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_smtpPort",
+            "type": "Microsoft.Common.TextBox",
+            "label": "TCP port of SMTP server",
+            "toolTip": "Port number of SMTP server, often 587",
+            "constraints": {
+              "required": true,
+              "regex": "^([0-9]){1,5}$",
+              "validationMessage": "Port number must be a valid TCP port number"
+            }
+          },
+          {
+            "name": "mi_smtpUsername",
+            "type": "Microsoft.Common.TextBox",
+            "label": "SMTP username",
+            "toolTip": "Username to authenticate to SMTP server",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_smtpPassword",
+            "type": "Microsoft.Common.PasswordBox",
+            "label": {
+              "password": "SMTP password",
+              "confirmPassword": "Confirm password"
+            },
+            "toolTip": "Password used to authenticate to SMTP server",
+            "constraints": {
+              "required": true
+            }
+          }
+        ]
+      }
+
+    ],
+    "outputs": {
+      "adminUsername": "[steps('vmSettings').adminUsername]",
+      "adminPassword": "[steps('vmSettings').adminPassword.password]",
+
+      "mi_publicHostname": "[steps('moveitSettings').mi_publicHostname]",
+      "mi_sysadminPassword": "[steps('moveitSettings').mi_sysadminPassword.password]",
+
+      "mi_emailTo": "[steps('emailSettings').mi_emailTo]",
+      "mi_emailFrom": "[steps('emailSettings').mi_emailFrom]",
+      "mi_smtpHost": "[steps('emailSettings').mi_smtpHost]",
+      "mi_smtpPort": "[steps('emailSettings').mi_smtpPort]",
+      "mi_smtpUsername": "[steps('emailSettings').mi_smtpUsername]",
+      "mi_smtpPassword": "[steps('emailSettings').mi_smtpPassword]"
+    }
+  }
+}

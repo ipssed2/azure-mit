@@ -1,0 +1,65 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "fileUris": {
+      "type": "string"
+    },
+    "mi_publicHostname": {
+      "type": "string"
+    },
+    "mi_emailTo": {
+      "type": "string"
+    },
+    "mi_emailFrom": {
+      "type": "string"
+    },
+    "mi_smtpHost": {
+      "type": "string"
+    },
+    "mi_smtpPort": {
+      "type": "int"
+    },
+    "mi_smtpUsername": {
+      "type": "string"
+    },
+    "mi_smtpPassword": {
+      "type": "securestring"
+    },
+    "mi_sysadminPassword": {
+      "type":  "securestring"
+    }
+  },
+  "variables": {
+    "UriFileNamePieces": "[split(parameters('fileUris'), '/')]",
+    "firstFileNameString": "[variables('UriFileNamePieces')[sub(length(variables('UriFileNamePieces')), 1)]]",
+    "firstFileNameBreakString": "[split(variables('firstFileNameString'), '?')]",
+    "firstFileName": "[variables('firstFileNameBreakString')[0]]"
+  },
+  "resources": [
+    {
+      "name": "[concat(parameters('vmName'),'/CustomScriptExtension')]",
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "location": "[parameters('location')]",
+      "apiVersion": "2015-06-15",
+      "properties": {
+        "publisher": "Microsoft.Compute",
+        "type": "CustomScriptExtension",
+        "typeHandlerVersion": "1.7",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "fileUris": "[split(parameters('fileUris'), ' ')]"
+        },
+        "protectedSettings": {
+          "commandToExecute": "[concat ('powershell -ExecutionPolicy Unrestricted -File ', variables('firstFileName'), ' -mi_publicHostname ', parameters('mi_publicHostname'), ' -mi_emailTo ',  parameters('mi_emailTo'), ' -mi_emailFrom ', parameters('mi_emailFrom'), ' -mi_smtpHost ', parameters('mi_smtpHost'), ' -mi_smtpPort ', parameters('mi_smtpPort'), ' -mi_smtpUsername ', parameters('mi_smtpUsername'), ' -mi_smtpPassword ', parameters('mi_smtpPassword'), ' -mi_sysadminPassword ', parameters('mi_sysadminPassword'))]"
+        }
+      }
+    }
+  ]
+}

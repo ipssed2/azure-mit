@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachineSize": {
+      "value": "Standard_D1_v2"
+    },
+    "adminUsername": {
+      "value": "hugos"
+    },
+    "adminPassword": {
+      "value": "A1s2d3f4"
+    },
+    "mi_publicHostname": {
+      "value": "myhostname"
+    },
+    "mi_emailTo": {
+      "value": "mriordan@ipswitch.com"
+    },
+    "mi_emailFrom": {
+      "value": "help@ipswitch.com"
+    },
+    "mi_smtpHost": {
+      "value": "smtp.test.com"
+    },
+    "mi_smtpPort": {
+      "value": 25
+    },
+    "mi_smtpUsername": {
+      "value": "mysmtpuser"
+    },
+    "mi_smtpPassword": {
+      "value": "mysmtppw"
+    },
+    "mi_sysadminPassword": {
+      "value": "A1s2d3f4"
+    }
+  }
+}
