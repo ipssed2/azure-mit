@@ -79,7 +79,7 @@
         "bladeTitle": "Customer Contact Info",
         "elements": [
           {
-            "name": "mi_custFirstName",
+            "name": "ci_custFirstName",
             "type": "Microsoft.Common.TextBox",
             "label": "First name",
             "toolTip": "Enter the first name of the customer contact",
@@ -88,7 +88,7 @@
             }
           },
           {
-            "name": "mi_custLastName",
+            "name": "ci_custLastName",
             "type": "Microsoft.Common.TextBox",
             "label": "Last name",
             "toolTip": "Enter the last name of the customer contact",
@@ -97,7 +97,7 @@
             }
           },
           {
-            "name": "mi_custCompanyName",
+            "name": "ci_custCompanyName",
             "type": "Microsoft.Common.TextBox",
             "label": "Company name",
             "toolTip": "Enter your company name",
@@ -106,7 +106,7 @@
             }
           },
           {
-            "name": "mi_custEmail",
+            "name": "ci_custEmail",
             "type": "Microsoft.Common.TextBox",
             "label": "Business email",
             "toolTip": "Enter the business email address of the customer contact",
@@ -115,7 +115,7 @@
             }
           },
           {
-            "name": "mi_custPhone",
+            "name": "ci_custPhone",
             "type": "Microsoft.Common.TextBox",
             "label": "Phone",
             "toolTip": "Enter the phone number of the customer contact",
@@ -124,13 +124,13 @@
             }
           },
           {
-            "name": "mi_custCityState",
+            "name": "ci_custCityState",
             "type": "Microsoft.Common.TextBox",
             "label": "City and state",
             "toolTip": "Enter the City, State of the customer contact"
           },
           {
-            "name": "mi_custCountry",
+            "name": "ci_custCountry",
             "type": "Microsoft.Common.TextBox",
             "label": "Country",
             "toolTip": "Enter the country of the customer contact"
@@ -250,6 +250,14 @@
     "outputs": {
       "adminUsername": "[base64(steps('vmSettings').adminUsername)]",
       "adminPassword": "[steps('vmSettings').adminPassword.password]",
+
+      "ci_custFirstName ": "[steps('customerInfo').ci_custFirstName]",
+      "ci_custLastName ": "[steps('customerInfo').ci_custLastName]",
+      "ci_custCompanyName ": "[steps('customerInfo').ci_custCompanyName]",
+      "ci_custEmail ": "[steps('customerInfo').ci_custEmail]",
+      "ci_custPhone ": "[steps('customerInfo').ci_custPhone]",
+      "ci_custCityState ": "[steps('customerInfo').ci_custCityState]",
+      "ci_custCountry ": "[steps('customerInfo').ci_custCountry]",
 
       "mi_publicHostname": "[steps('moveitSettings').mi_publicHostname]",
       "mi_sysadminPassword": "[steps('moveitSettings').mi_sysadminPassword.password]",
