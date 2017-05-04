@@ -68,6 +68,76 @@
 
         ]
       },
+
+      {
+        "name": "customerInfo",
+        "label": "Customer Contact Info",
+        "subLabel": {
+          "preValidation": "Required",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "Customer Contact Info",
+        "elements": [
+          {
+            "name": "mi_custFirstName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "First name",
+            "toolTip": "Enter the first name of the customer contact",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_custLastName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Last name",
+            "toolTip": "Enter the last name of the customer contact",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_custCompanyName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Company name",
+            "toolTip": "Enter your company name",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_custEmail",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Business email",
+            "toolTip": "Enter the business email address of the customer contact",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_custPhone",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Phone",
+            "toolTip": "Enter the phone number of the customer contact",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "mi_custCityState",
+            "type": "Microsoft.Common.TextBox",
+            "label": "City and state",
+            "toolTip": "Enter the City, State of the customer contact"
+          },
+          {
+            "name": "mi_custCountry",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Country",
+            "toolTip": "Enter the country of the customer contact"
+          }
+        ]
+      },
+
       {
         "name": "moveitSettings",
         "label": "MOVEit Transfer Settings",
@@ -178,7 +248,7 @@
 
     ],
     "outputs": {
-      "adminUsername": "[steps('vmSettings').adminUsername]",
+      "adminUsername": "[base64(steps('vmSettings').adminUsername)]",
       "adminPassword": "[steps('vmSettings').adminPassword.password]",
 
       "mi_publicHostname": "[steps('moveitSettings').mi_publicHostname]",
