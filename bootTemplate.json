@@ -75,9 +75,9 @@
                     "vmSize": "[parameters('virtualMachineSize')]"
                 },
                 "storageProfile": {
-                    "imageReference": {
-                       "id":  "[resourceId('RGTest2', 'Microsoft.Compute/images','ImageTest2')]"
-                    },
+                  "imageReference": {
+                    "id": "[resourceId('RGEchoArgs', 'Microsoft.Compute/images','MOVEitTransfer-image-echoargs')]"
+                  },
                     "osDisk": {
                         "name": "[variables('virtualMachineName')]",
                         "createOption": "FromImage",
@@ -103,7 +103,7 @@
             "properties": {
                 "mode": "Incremental",
               "templateLink": {
-                "uri": "https://raw.githubusercontent.com/ipsmad2/ips-azure/master/extensionTemplate.json",
+                "uri": "https://raw.githubusercontent.com/ipssed2/azure-mit/master/extensionTemplate.json",
                 },
               "parameters": {
                 "location": {

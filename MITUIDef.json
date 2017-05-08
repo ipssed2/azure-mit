@@ -244,7 +244,7 @@
             "toolTip": "Password used to authenticate to SMTP server",
             "constraints": {
               "required": true,
-              "regex":  "."
+              "regex": "."
             }
           }
         ]
