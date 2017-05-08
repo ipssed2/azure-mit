@@ -1,1 +1,1 @@
-new-azurermresourcegroup -Name RGDemo1 -Location "WestUS2"
+Measure-Command {new-azurermresourcegroup -Name RGDemo1 -Location "WestUS2"}
