@@ -1,1 +1,1 @@
-Remove-AzureRmResourceGroup -Name RGDemo1
+Measure-Command { Remove-AzureRmResourceGroup -Name RGDemo1 }
