@@ -49,7 +49,9 @@
             "label": "VM size",
             "toolTip": "Select VM Size",
             "recommendedSizes": [
-              "Standard_DS1_v2"
+              "Standard_DS1_v2",
+              "Standard_DS2_v2",
+              "Standard_DS3_v2"
             ],
             "constraints": {
               "excludedSizes": [
