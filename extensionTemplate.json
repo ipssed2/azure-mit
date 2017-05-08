@@ -57,7 +57,7 @@
           "fileUris": "[split(parameters('fileUris'), ' ')]"
         },
         "protectedSettings": {
-          "commandToExecute": "[concat ('C:\\Deploy\\EchoArgs', ' -mi_publicHostname ', parameters('mi_publicHostname'), ' -mi_emailTo ',  parameters('mi_emailTo'), ' -mi_emailFrom ', parameters('mi_emailFrom'), ' -mi_smtpHost ', parameters('mi_smtpHost'), ' -mi_smtpPort ', parameters('mi_smtpPort'), ' -mi_smtpUsername ', parameters('mi_smtpUsername'), ' -mi_smtpPassword ', parameters('mi_smtpPassword'), ' -mi_sysadminPassword ', parameters('mi_sysadminPassword')]"
+          "commandToExecute": "[concat ('C:\\Deploy\\EchoArgs', ' -mi_publicHostname ', parameters('mi_publicHostname'), ' -mi_emailTo ',  parameters('mi_emailTo'), ' -mi_emailFrom ', parameters('mi_emailFrom'), ' -mi_smtpHost ', parameters('mi_smtpHost'), ' -mi_smtpPort ', parameters('mi_smtpPort'), ' -mi_smtpUsername ', parameters('mi_smtpUsername'), ' -mi_smtpPassword ', parameters('mi_smtpPassword'), ' -mi_sysadminPassword ', parameters('mi_sysadminPassword'))]"
         }
       }
     }
