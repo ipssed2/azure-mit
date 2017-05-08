@@ -33,7 +33,7 @@
       "type": "securestring"
     },
     "mi_sysadminPassword": {
-      "type":  "securestring"
+      "type": "securestring"
     }
   },
   "variables": {
