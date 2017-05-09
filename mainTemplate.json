@@ -37,8 +37,29 @@
     },
     "mi_smtpPassword": {
       "type": "securestring"
-    }
+    },
 
+    "ci_custFirstName": {
+      "type": "string"
+    },
+    "ci_custLastName": {
+      "type": "string"
+    },
+    "ci_custCompanyName": {
+      "type": "string"
+    },
+    "ci_custEmail": {
+      "type": "string"
+    },
+    "ci_custPhone": {
+      "type": "string"
+    },
+    "ci_custCityState": {
+      "type": "string"
+    },
+    "ci_custCountry": {
+      "type": "string"
+    }
   },
   "variables": {
 
@@ -118,7 +139,7 @@
               ]
             },
             "protectedSettings": {
-              "commandToExecute": "[concat ('C:\\Deploy\\EchoArgs', ' -mi_publicHostname ', parameters('mi_publicHostname'), ' -mi_emailTo ',  parameters('mi_emailTo'), ' -mi_emailFrom ', parameters('mi_emailFrom'), ' -mi_smtpHost ', parameters('mi_smtpHost'), ' -mi_smtpPort ', parameters('mi_smtpPort'), ' -mi_smtpUsername ', parameters('mi_smtpUsername'), ' -mi_smtpPassword ', parameters('mi_smtpPassword'), ' -mi_sysadminPassword ', parameters('mi_sysadminPassword'))]"
+              "commandToExecute": "[concat ('C:\\Deploy\\EchoArgs', ' -mi_publicHostname ', base64(parameters('mi_publicHostname')), ' -mi_emailTo ',  base64(parameters('mi_emailTo')), ' -mi_emailFrom ', base64(parameters('mi_emailFrom')), ' -mi_smtpHost ', base64(parameters('mi_smtpHost')), ' -mi_smtpPort ', base64(parameters('mi_smtpPort')), ' -mi_smtpUsername ', base64(parameters('mi_smtpUsername')), ' -mi_smtpPassword ', base64(parameters('mi_smtpPassword')), ' -mi_sysadminPassword ', base64(parameters('mi_sysadminPassword'),  ' -ci_custFirstName ', base64(parameters('ci_custFirstName')), ' -ci_custLastName ', base64(parameters('ci_custLastName')), ' -ci_custCompanyName ', base64(parameters('ci_custCompanyName')), ' -ci_custEmail ', base64(parameters('ci_custEmail')), ' -ci_custPhone ', base64(parameters('ci_custPhone')), ' -ci_custCityState ', base64(parameters('ci_custCityState')), ' -ci_custCountry ', base64(parameters('ci_custCountry'))]"
             }
           }
         }
