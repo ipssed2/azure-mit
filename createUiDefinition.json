@@ -254,7 +254,7 @@
 
     ],
     "outputs": {
-      "adminUsername": "[base64(steps('vmSettings').adminUsername)]",
+      "adminUsername": "[steps('vmSettings').adminUsername]",
       "adminPassword": "[steps('vmSettings').adminPassword.password]",
 
       "ci_custFirstName ": "[steps('customerInfo').ci_custFirstName]",
