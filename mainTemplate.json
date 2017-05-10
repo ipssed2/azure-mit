@@ -55,10 +55,12 @@
       "type": "string"
     },
     "ci_custCityState": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
     },
     "ci_custCountry": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
     }
   },
   "variables": {
