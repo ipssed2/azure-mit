@@ -30,7 +30,7 @@
       "type": "string"
     },
     "mi_smtpPort": {
-      "type": "int"
+      "type": "string"
     },
     "mi_smtpUsername": {
       "type": "string"
