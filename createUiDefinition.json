@@ -8,6 +8,68 @@
 
     "steps": [
       {
+        "name": "customerInfo",
+        "label": "Customer Contact Info",
+        "subLabel": {
+          "preValidation": "Required",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "Customer Contact Info",
+        "elements": [
+          {
+            "name": "ci_custFirstName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "First name",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "ci_custLastName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Last name",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "ci_custCompanyName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Company name",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "ci_custEmail",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Business email",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "ci_custPhone",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Phone",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "ci_custCountry",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Country"
+          },
+          {
+            "name": "ci_custCityState",
+            "type": "Microsoft.Common.TextBox",
+            "label": "City and state"
+          }
+        ]
+      },
+
+      {
         "name": "vmSettings",
         "label": "Virtual Machine Settings",
         "subLabel": {
@@ -31,7 +93,7 @@
             "name": "adminPassword",
             "type": "Microsoft.Compute.CredentialsCombo",
             "label": {
-              "password": "VM user password",
+              "password": "Password",
               "confirmPassword": "Confirm password"
             },
             "toolTip": "",
@@ -47,7 +109,6 @@
             "name": "virtualMachineSize",
             "type": "Microsoft.Compute.SizeSelector",
             "label": "VM size",
-            "toolTip": "Select VM Size",
             "recommendedSizes": [
               "Standard_DS1_v2",
               "Standard_DS2_v2",
@@ -68,75 +129,6 @@
             "count": 1
           }
 
-        ]
-      },
-
-      {
-        "name": "customerInfo",
-        "label": "Customer Contact Info",
-        "subLabel": {
-          "preValidation": "Required",
-          "postValidation": "Done"
-        },
-        "bladeTitle": "Customer Contact Info",
-        "elements": [
-          {
-            "name": "ci_custFirstName",
-            "type": "Microsoft.Common.TextBox",
-            "label": "First name",
-            "toolTip": "The first name of the customer contact",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "ci_custLastName",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Last name",
-            "toolTip": "The last name of the customer contact",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "ci_custCompanyName",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Company name",
-            "toolTip": "Your company name",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "ci_custEmail",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Business email",
-            "toolTip": "The business email address of the customer contact",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "ci_custPhone",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Phone",
-            "toolTip": "The phone number of the customer contact",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "ci_custCityState",
-            "type": "Microsoft.Common.TextBox",
-            "label": "City and state",
-            "toolTip": "The City, State of the customer contact"
-          },
-          {
-            "name": "ci_custCountry",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Country",
-            "toolTip": "The country of the customer contact"
-          }
         ]
       },
 
@@ -163,7 +155,7 @@
             "name": "mi_sysadminPassword",
             "type": "Microsoft.Compute.CredentialsCombo",
             "label": {
-              "password": "MOVEit sysadmin password",
+              "password": "MOVEit Transfer sysadmin password",
               "confirmPassword": "Confirm password"
             },
             "toolTip": "The desired password for the MOVEit Transfer sysadmin user",
