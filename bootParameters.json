@@ -3,16 +3,19 @@
     "contentVersion": "1.0.0.0",
   "parameters": {
     "virtualMachineSize": {
-      "value": "Standard_DS3_v2"
+      "value": "Standard_DS1_v2"
     },
     "adminUsername": {
-      "value": "demoadmin"
+      "value": "winadmin"
     },
     "adminPassword": {
       "value": "A1s2d3f4"
     },
     "mi_publicHostname": {
       "value": "myhostname"
+    },
+    "mi_sysadminPassword": {
+      "value": "mitest.micloudpoc.com"
     },
     "mi_emailTo": {
       "value": "mriordan@ipswitch.com"
@@ -24,7 +27,7 @@
       "value": "smtp.test.com"
     },
     "mi_smtpPort": {
-      "value": 25
+      "value": "25"
     },
     "mi_smtpUsername": {
       "value": "mysmtpuser"
@@ -34,6 +37,28 @@
     },
     "mi_sysadminPassword": {
       "value": "A1s2d3f4"
+    },
+
+    "ci_custFirstName": {
+      "value": "Fred"
+    },
+    "ci_custLastName": {
+      "value": "Smith"
+    },
+    "ci_custCompanyName": {
+      "value": "XYZZY Corp"
+    },
+    "ci_custEmail": {
+      "value": "fred@zyzzy.com"
+    },
+    "ci_custPhone": {
+      "value": "608-555-1234"
+    },
+    "ci_custCityState": {
+      "value": ""
+    },
+    "ci_custCountry": {
+      "value": "US"
     }
   }
 }
