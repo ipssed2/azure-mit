@@ -9,15 +9,30 @@
 # This script is adapted from https://blogs.msdn.microsoft.com/igorpag/2017/03/14/azure-managed-disks-deep-dive-lessons-learned-and-benefits/  
 # Mark Riordan 2017-06-08
 
-$sourcergname = "R20176719550"
+$mynow = Get-Date
+$mynow
+$id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.ToString("00") + $mynow.Hour.ToString("00") + $mynow.Minute.ToString("00") + $mynow.Second.ToString("00"))
+
+# These next lines are the ones you normally need to change:
+$sourcergname = "RGFrom20170608"
+# end of frequently-changed lines
+
+$ImageName = "MITImage" + $id;
+
 $targetrgname = "RGMITBase"
 $storageacccountname = "mitbaseimages"
 $containername = "images"
- 
+
 $VMName = "MOVEitTransfer"
 $VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
+# Depending on how you created the VM, you might need to change this to a different disk name:
 $OSDiskName = $VMName
 $OSDisk = Get-AzureRmDisk -ResourceGroupName $sourcergname -DiskName $OSDiskName
+
+Get-Date
+echo "Stopping VM"
+Stop-AzureRmVM -ResourceGroupName $sourcergname -Name $VM.Name
+Get-Date
  
 $mdiskURL = Grant-AzureRmDiskAccess -ResourceGroupName $sourcergname -DiskName $VM.StorageProfile.OsDisk.Name -Access Read -DurationInSecond 3600
  
@@ -27,21 +42,29 @@ $storagectx = New-AzureStorageContext -StorageAccountName $storageacccountname -
  
 $targetcontainer = New-AzureStorageContainer -Name $containername -Context $storagectx -Permission Blob
 $targetcontainer = Get-AzureStorageContainer -Name "images" -Context $storagectx
-$destdiskname = $VM.StorageProfile.OsDisk.Name + ".vhd";
+# $destdiskname = $VM.StorageProfile.OsDisk.Name + "2.vhd";
+$destdiskname = "Disk" + $id + ".vhd";
 $sourceSASurl = $mdiskURL.AccessSAS
- 
+
+Get-Date
+echo ("Copying disk to " + $destdiskname)
+
 $ops = Start-AzureStorageBlobCopy -AbsoluteUri $sourceSASurl -DestBlob $destdiskname -DestContainer $targetcontainer.Name -DestContext $storagectx
  
 Get-AzureStorageBlobCopyState -Container $targetcontainer.Name -Blob $destdiskname -Context $storagectx -WaitForComplete
- 
+
+Get-Date
+
 $sourceimagediskBlob = Get-AzureStorageBlob -Context $storagectx -Container $targetcontainer.Name -Blob $destdiskname
  
-$sourceimagediskURL = ($sourceimagediskBlob.Context.BlobEndPoint) + $containername + “/” + $destdiskname;
+$sourceimagediskURL = ($sourceimagediskBlob.Context.BlobEndPoint) + $containername + "/" + $destdiskname;
  
 $location = $VM.Location
 $targetimagecfg = New-AzureRmImageConfig -Location $location
  
 Set-AzureRmImageOsDisk -Image $targetimagecfg -OsType "Windows" -OsState "Generalized" -BlobUri $sourceimagediskURL;
- 
-$ImageName = "MITImage20170608"
+
+echo ("Creating " + $ImageName)
 $targetimage = New-AzureRmImage -Image $targetimagecfg -ImageName $ImageName -ResourceGroupName $targetrgname
+
+Get-Date
