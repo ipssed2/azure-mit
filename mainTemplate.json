@@ -99,7 +99,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "[resourceId('RGMITBase', 'Microsoft.Compute/images','MITImage20170612153523')]"
+            "id": "[resourceId('RGMITBase', 'Microsoft.Compute/images','MITImage20170613104341')]"
           },
           "osDisk": {
             "name": "[variables('virtualMachineName')]",
