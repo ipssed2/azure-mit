@@ -13,9 +13,9 @@ $mynow = Get-Date
 $mynow
 $id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.ToString("00") + $mynow.Hour.ToString("00") + $mynow.Minute.ToString("00") + $mynow.Second.ToString("00"))
 
-# These next lines are the ones you normally need to change:
-$sourcergname = "RGFrom20170608"
-# end of frequently-changed lines
+# These next lines are the ones you normally need to change #1:
+$sourcergname = "RGVMForSMTP"
+# end of frequently-changed lines #1
 
 $ImageName = "MITImage" + $id;
 
@@ -23,16 +23,18 @@ $targetrgname = "RGMITBase"
 $storageacccountname = "mitbaseimages"
 $containername = "images"
 
-$VMName = "MOVEitTransfer"
+$VMName = "VMForSMTP"
 $VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
+# Start of lines you may need to change #2:
 # Depending on how you created the VM, you might need to change this to a different disk name:
-$OSDiskName = $VMName
+$OSDiskName = "VMForSMTP_disk1_fc57a24480a04895845b5fb41e6b1166"
+# End of lines you may need to change #2.
 $OSDisk = Get-AzureRmDisk -ResourceGroupName $sourcergname -DiskName $OSDiskName
 
-Get-Date
-echo "Stopping VM"
+Get-Date;
+echo "Stopping VM";
 Stop-AzureRmVM -ResourceGroupName $sourcergname -Name $VM.Name
-Get-Date
+Get-Date;
  
 $mdiskURL = Grant-AzureRmDiskAccess -ResourceGroupName $sourcergname -DiskName $VM.StorageProfile.OsDisk.Name -Access Read -DurationInSecond 3600
  
