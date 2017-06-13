@@ -11,18 +11,21 @@
     "adminPassword": {
       "value": "A1s2d3f4"
     },
+
     "mi_publicHostname": {
       "value": "myhostname"
     },
     "mi_sysadminPassword": {
-      "value": "mitest.micloudpoc.com"
+      "value": "A1s2d3f4"
     },
+
     "mi_emailTo": {
       "value": "mriordan@ipswitch.com"
     },
     "mi_emailFrom": {
       "value": "help@ipswitch.com"
     },
+
     "mi_smtpHost": {
       "value": "smtp.test.com"
     },
@@ -35,9 +38,7 @@
     "mi_smtpPassword": {
       "value": "mysmtppw"
     },
-    "mi_sysadminPassword": {
-      "value": "A1s2d3f4"
-    },
+
 
     "ci_custFirstName": {
       "value": "Fred"
