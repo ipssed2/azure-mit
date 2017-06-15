@@ -3,7 +3,9 @@ $id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.T
 $RGName = "R" + $id
 $DeployName = "D" + $id
 echo "Resource group will be " $RGName
-New-AzureRmResourceGroup -Name $RGName -Location "WestUS2"
-Get-Date
-New-AzureRmResourceGroupDeployment -ResourceGroupName $RGName -Name $DeployName -Mode Incremental -TemplateParameterFile .\bootParameters.json -TemplateFile .\mainTemplate.json
-Get-Date
+Get-Date;
+New-AzureRmResourceGroup -Name $RGName -Location "WestUS2";
+Get-Date;
+New-AzureRmResourceGroupDeployment -ResourceGroupName $RGName -Name $DeployName -Mode Incremental -TemplateParameterFile .\myParameters.json -TemplateFile .\mainTemplate.json;
+Get-Date;
+(Get-AzureRmPublicIpAddress -ResourceGroupName $RGName).IPAddress
