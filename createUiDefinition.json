@@ -58,8 +58,62 @@
           },
           {
             "name": "ci_custCountry",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Country"
+            "type": "Microsoft.Common.DropDown",
+            "label": "Country",
+            "allowedValues": [
+              {
+                "label": "Belgium",
+                "value": "Belgium"
+              },
+              {
+                "label": "Canada",
+                "value": "Canada"
+              },
+              {
+                "label": "France",
+                "value": "France"
+              },
+              {
+                "label": "Germany",
+                "value": "Germany"
+              },
+              {
+                "label": "Ireland",
+                "value": "Ireland"
+              },
+              {
+                "label": "Italy",
+                "value": "Italy"
+              },
+              {
+                "label": "Mexico",
+                "value": "Mexico"
+              },
+              {
+                "label": "Netherlands",
+                "value": "Netherlands"
+              },
+              {
+                "label": "Portugal",
+                "value": "Portugal"
+              },
+              {
+                "label": "Scotland",
+                "value": "Scotland"
+              },
+              {
+                "label": "Spain",
+                "value": "Spain"
+              },
+              {
+                "label": "United Kingdom",
+                "value": "United Kingdom"
+              },
+              {
+                "label": "United States",
+                "value": "United States"
+              }
+            ]
           },
           {
             "name": "ci_custCity",
