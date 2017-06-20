@@ -64,7 +64,7 @@
           {
             "name": "ci_custCity",
             "type": "Microsoft.Common.TextBox",
-            "label": "Cit"
+            "label": "City"
           },
           {
             "name": "ci_custState",
@@ -160,7 +160,7 @@
             "name": "mi_sysadminPassword",
             "type": "Microsoft.Compute.CredentialsCombo",
             "label": {
-              "password": "MOVEit Transfer sysadmin password",
+              "password": "MOVEit Password of 'sysadmin'",
               "confirmPassword": "Confirm password"
             },
             "toolTip": "The desired password for the MOVEit Transfer sysadmin user",
@@ -189,7 +189,7 @@
             "name": "mi_emailTo",
             "type": "Microsoft.Common.TextBox",
             "label": "'To' address for error emails",
-            "toolTip": "Address to which emails will be sent when there is a serious error",
+            "toolTip": "'To' email addresses for error reports and other notifications",
             "constraints": {
               "required": true
             }
@@ -198,7 +198,7 @@
             "name": "mi_emailFrom",
             "type": "Microsoft.Common.TextBox",
             "label": "'From' address for error emails",
-            "toolTip": "'From' address used for error emails",
+            "toolTip": "'From' email addresses for error reports and other notifications",
             "constraints": {
               "required": true
             }
@@ -208,7 +208,7 @@
             "name": "mi_smtpHost",
             "type": "Microsoft.Common.TextBox",
             "label": "SMTP hostname",
-            "toolTip": "Hostname of the SMTP server to use to deliver email.  You can set up an account with various third-party providers, including SocketLabs.com",
+            "toolTip": "Hostname of the SMTP server to use to deliver email.  You can set up an account with various third-party providers, including SocketLabs.com.",
             "constraints": {
               "required": true
             }
