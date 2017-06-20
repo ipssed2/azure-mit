@@ -62,9 +62,14 @@
             "label": "Country"
           },
           {
-            "name": "ci_custCityState",
+            "name": "ci_custCity",
             "type": "Microsoft.Common.TextBox",
-            "label": "City and state"
+            "label": "Cit"
+          },
+          {
+            "name": "ci_custState",
+            "type": "Microsoft.Common.TextBox",
+            "label": "State / province"
           }
         ]
       },
@@ -255,7 +260,8 @@
       "ci_custCompanyName": "[steps('customerInfo').ci_custCompanyName]",
       "ci_custEmail": "[steps('customerInfo').ci_custEmail]",
       "ci_custPhone": "[steps('customerInfo').ci_custPhone]",
-      "ci_custCityState": "[steps('customerInfo').ci_custCityState]",
+      "ci_custCity": "[steps('customerInfo').ci_custCity]",
+      "ci_custState": "[steps('customerInfo').ci_custState]",
       "ci_custCountry": "[steps('customerInfo').ci_custCountry]",
 
       "mi_publicHostname": "[steps('moveitSettings').mi_publicHostname]",
