@@ -14,7 +14,7 @@ $mynow
 $id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.ToString("00") + $mynow.Hour.ToString("00") + $mynow.Minute.ToString("00") + $mynow.Second.ToString("00"))
 
 # These next lines are the ones you normally need to change #1:
-$sourcergname = "RGVMForSMTP"
+$sourcergname = "RGVMEvalLic"
 # end of frequently-changed lines #1
 
 $ImageName = "MITImage" + $id;
@@ -23,11 +23,12 @@ $targetrgname = "RGMITBase"
 $storageacccountname = "mitbaseimages"
 $containername = "images"
 
-$VMName = "VMForSMTP"
+# You may need to change VMName:
+$VMName = "VMEvalLic"
 $VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
 # Start of lines you may need to change #2:
 # Depending on how you created the VM, you might need to change this to a different disk name:
-$OSDiskName = "VMForSMTP_disk1_fc57a24480a04895845b5fb41e6b1166"
+$OSDiskName = "VMEvalLic_disk1_2e1c958d8058461ab2a83186a38bd6d3"
 # End of lines you may need to change #2.
 $OSDisk = Get-AzureRmDisk -ResourceGroupName $sourcergname -DiskName $OSDiskName
 
