@@ -1,5 +1,5 @@
 # This procedure seems to be necessary to create images from certain types of VMs.
-# I found that when I switch to Windows 2016, the old techniques for creating images no longer worked.
+# I found that when I switched to Windows 2016, the old techniques for creating images no longer worked.
 # This includes:
 # - using the "Capture" button on the Azure portal page for the VM (the button does not appear), and 
 # - using Save-AzureRmVMImage, which gives the error "The Capture action is only supported on a Virtual
@@ -8,14 +8,15 @@
 #
 # This script is adapted from https://blogs.msdn.microsoft.com/igorpag/2017/03/14/azure-managed-disks-deep-dive-lessons-learned-and-benefits/  
 # Mark Riordan 2017-06-08
+#
+# Change the places marked with ##.
 
 $mynow = Get-Date
 $mynow
 $id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.ToString("00") + $mynow.Hour.ToString("00") + $mynow.Minute.ToString("00") + $mynow.Second.ToString("00"))
 
-# These next lines are the ones you normally need to change #1:
-$sourcergname = "RGVMEvalLic"
-# end of frequently-changed lines #1
+##  Change this resource group name to reflect where the VM is:
+$sourcergname = "RGImg20170621"
 
 $ImageName = "MITImage" + $id;
 
@@ -23,13 +24,16 @@ $targetrgname = "RGMITBase"
 $storageacccountname = "mitbaseimages"
 $containername = "images"
 
-# You may need to change VMName:
-$VMName = "VMEvalLic"
+## Change VMName to reflect the name of the VM from which the image will be created:
+$VMName = "VMImg20170621"
+
 $VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
-# Start of lines you may need to change #2:
-# Depending on how you created the VM, you might need to change this to a different disk name:
-$OSDiskName = "VMEvalLic_disk1_2e1c958d8058461ab2a83186a38bd6d3"
-# End of lines you may need to change #2.
+
+## Change this disk name to reflect the disk drive of the VM from which we'll create the image
+# You can learn this from the Azure portal under the source resource group.
+# It is the Name of the "disk" resource:
+$OSDiskName = "VMImg20170621_disk1_0bb2deb1c74f498aa0037523e451318b"
+
 $OSDisk = Get-AzureRmDisk -ResourceGroupName $sourcergname -DiskName $OSDiskName
 
 Get-Date;
