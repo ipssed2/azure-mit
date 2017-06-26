@@ -103,7 +103,10 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "[resourceId('RGMITBase', 'Microsoft.Compute/images','MITImage20170622142530')]"
+            "publisher": "ipswitch",
+            "offer": "moveit-transfer-vm",
+            "sku": "moveit-transfer-starter",
+            "version": "latest"
           },
           "osDisk": {
             "name": "[variables('virtualMachineName')]",
