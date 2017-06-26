@@ -16,7 +16,7 @@ $mynow
 $id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.ToString("00") + $mynow.Hour.ToString("00") + $mynow.Minute.ToString("00") + $mynow.Second.ToString("00"))
 
 ##  Change this resource group name to reflect where the VM is:
-$sourcergname = "RGImg20170621"
+$sourcergname = "RGImg20170622e"
 
 $ImageName = "MITImage" + $id;
 
@@ -25,14 +25,14 @@ $storageacccountname = "mitbaseimages"
 $containername = "images"
 
 ## Change VMName to reflect the name of the VM from which the image will be created:
-$VMName = "VMImg20170621"
+$VMName = "VMImg20170622e"
 
 $VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
 
 ## Change this disk name to reflect the disk drive of the VM from which we'll create the image
 # You can learn this from the Azure portal under the source resource group.
 # It is the Name of the "disk" resource:
-$OSDiskName = "VMImg20170621_disk1_0bb2deb1c74f498aa0037523e451318b"
+$OSDiskName = "VMImg20170622e_disk1_eaa19ee9521e4913b2d256323f3902a9"
 
 $OSDisk = Get-AzureRmDisk -ResourceGroupName $sourcergname -DiskName $OSDiskName
 
