@@ -77,7 +77,25 @@
     "subnetName": "subnet1",
     "subnetPrefix": "10.0.0.0/24",
     "publicIpAddressName": "publicip1",
-    "publicIpAddressType": "dynamic"
+    "publicIpAddressType": "dynamic",
+
+    "myPublisher": "ipswitch",
+    "myOffer": "moveit-transfer-vm",
+    "mySKU": "moveit-transfer-starter",
+    "myVersion": "latest",
+
+    "myImageReference": {
+      "publisher": "[variables('myPublisher')]",
+      "offer": "[variables('myOffer')]",
+      "sku": "[variables('mySKU')]",
+      "version": "[variables('myVersion')]"
+    },
+
+    "myPlan": {
+      "name": "[variables('mySKU')]",
+      "product": "[variables('myOffer')]",
+      "publisher": "[variables('myPublisher')]"
+    }
 
   },
   "resources": [
@@ -85,6 +103,7 @@
       "name": "[variables('virtualMachineName')]",
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2016-04-30-preview",
+      "plan": "[variables('myPlan')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
@@ -102,12 +121,7 @@
           "vmSize": "[parameters('virtualMachineSize')]"
         },
         "storageProfile": {
-          "imageReference": {
-            "publisher": "ipswitch",
-            "offer": "moveit-transfer-vm",
-            "sku": "moveit-transfer-starter",
-            "version": "latest"
-          },
+          "imageReference": "[variables('myImageReference')]",
           "osDisk": {
             "name": "[variables('virtualMachineName')]",
             "createOption": "FromImage",
