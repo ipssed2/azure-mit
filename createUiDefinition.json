@@ -45,7 +45,9 @@
             "type": "Microsoft.Common.TextBox",
             "label": "Business email",
             "constraints": {
-              "required": true
+              "required": true,
+              "regex": "^\\S+@\\S+[\\.][0-9a-z]+$",
+              "validationMessage": "Must be a valid email address"
             }
           },
           {
@@ -1189,7 +1191,9 @@
             "label": "'To' address for error emails",
             "toolTip": "'To' email addresses for error reports and other notifications",
             "constraints": {
-              "required": true
+              "required": true,
+              "regex": "^\\S+@\\S+[\\.][0-9a-z]+$",
+              "validationMessage": "Must be a valid email address"
             }
           },
           {
@@ -1198,7 +1202,9 @@
             "label": "'From' address for error emails",
             "toolTip": "'From' email addresses for error reports and other notifications",
             "constraints": {
-              "required": true
+              "required": true,
+              "regex": "^\\S+@\\S+[\\.][0-9a-z]+$",
+              "validationMessage": "Must be a valid email address"
             }
           },
 
