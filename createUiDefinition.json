@@ -1150,7 +1150,7 @@
             "name": "mi_publicHostname",
             "type": "Microsoft.Common.TextBox",
             "label": "Public hostname",
-            "toolTip": "The hostname to which you will assign this VM once it is running",
+            "toolTip": "The fully-qualified domain name to which you will assign this VM once it is running",
             "constraints": {
               "required": true
             }
