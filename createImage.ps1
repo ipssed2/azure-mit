@@ -11,59 +11,56 @@
 #
 # Change the places marked with ##.
 
+Set-StrictMode -Version latest 
+
 $mynow = Get-Date
 $mynow
 $id = ($mynow.Year.ToString("0000") + $mynow.Month.ToString("00") + $mynow.Day.ToString("00") + $mynow.Hour.ToString("00") + $mynow.Minute.ToString("00") + $mynow.Second.ToString("00"))
 
-# Change 1 of 3
-## Change this resource group name to reflect where the VM is:
-$sourcergname = "RGVImg20170702a"
+# List the available resource groups.
+Get-AzureRmResourceGroup | Select-Object ResourceGroupName | Out-String -Stream;
+echo "You are going to create an image from a VM you have sysprepped.";
+# Prompt the user for the one where the VM resides.
+$sourcergname = Read-Host -Prompt 'Type the resource group where the VM resides, from the list above'
 
-$ImageName = "MITImage" + $id;
-
-$targetrgname = "RGMITBase"
-$storageacccountname = "mitbaseimages"
-$containername = "images"
-
-# Change 2 of 3
-## Change VMName to reflect the name of the VM from which the image will be created:
-$VMName = "RGVImg20170702a"
-
-$VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
-
-# Change 3 of 3
-## Change this disk name to reflect the disk drive of the VM from which we'll create the image
-# You can learn this from the Azure portal under the source resource group.
-# It is the Name of the "disk" resource:
-$OSDiskName = "RGVImg20170702a_disk1_a3dfbb28740f422cbfc7e3b474de5c68"
-
-$OSDisk = Get-AzureRmDisk -ResourceGroupName $sourcergname -DiskName $OSDiskName
+# Find the VM in the resource group.
+$VM = Find-AzureRmResource -ResourceGroupNameEquals $sourcergname -ResourceType "Microsoft.Compute/virtualMachines"
+$VMName = $VM.Name
 
 Get-Date;
 echo "Stopping VM";
 Stop-AzureRmVM -ResourceGroupName $sourcergname -Name $VM.Name
 Get-Date;
- 
+
+# This seems to be necessary in order to populate some of the obscure VM attributes, 
+# even though we computed $VM above.
+$VM = Get-AzureRmVM -ResourceGroupName $sourcergname -Name $VMName
+echo ("Image will be based on " + $VM.StorageProfile.OsDisk.Name);
 $mdiskURL = Grant-AzureRmDiskAccess -ResourceGroupName $sourcergname -DiskName $VM.StorageProfile.OsDisk.Name -Access Read -DurationInSecond 3600
- 
+
+# Target information
+$ImageName = "MITImage" + $id;
+$targetrgname = "RGMITBase"
+$storageacccountname = "mitbaseimages"
+$containername = "images"
+
 $storageacccountkey = Get-AzureRmStorageAccountKey -ResourceGroupName $targetrgname -Name $storageacccountname
  
 $storagectx = New-AzureStorageContext -StorageAccountName $storageacccountname -StorageAccountKey $storageacccountkey[0].Value
  
 $targetcontainer = New-AzureStorageContainer -Name $containername -Context $storagectx -Permission Blob
 $targetcontainer = Get-AzureStorageContainer -Name "images" -Context $storagectx
-# $destdiskname = $VM.StorageProfile.OsDisk.Name + "2.vhd";
 $destdiskname = "Disk" + $id + ".vhd";
 $sourceSASurl = $mdiskURL.AccessSAS
 
-Get-Date
-echo ("Copying disk to " + $destdiskname)
+Get-Date;
+echo ("Slowly copying disk to " + $destdiskname)
 
 $ops = Start-AzureStorageBlobCopy -AbsoluteUri $sourceSASurl -DestBlob $destdiskname -DestContainer $targetcontainer.Name -DestContext $storagectx
  
 Get-AzureStorageBlobCopyState -Container $targetcontainer.Name -Blob $destdiskname -Context $storagectx -WaitForComplete
 
-Get-Date
+Get-Date;
 
 $sourceimagediskBlob = Get-AzureStorageBlob -Context $storagectx -Container $targetcontainer.Name -Blob $destdiskname
  
@@ -77,4 +74,4 @@ Set-AzureRmImageOsDisk -Image $targetimagecfg -OsType "Windows" -OsState "Genera
 echo ("Creating " + $ImageName)
 $targetimage = New-AzureRmImage -Image $targetimagecfg -ImageName $ImageName -ResourceGroupName $targetrgname
 
-Get-Date
+Get-Date;
