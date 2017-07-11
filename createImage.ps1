@@ -8,8 +8,17 @@
 #
 # This script is adapted from https://blogs.msdn.microsoft.com/igorpag/2017/03/14/azure-managed-disks-deep-dive-lessons-learned-and-benefits/  
 # Mark Riordan 2017-06-08
-#
-# Change the places marked with ##.
+
+param([string]$targetrgname='', [string]$targetstorageaccountname='')
+
+if ($targetrgname -eq '' -or $targetstorageaccountname -eq '') {
+	echo "Usage:  createImage.ps1 -targetrgname resourceGroupName -targetstorageaccountname targetStorageAcctName";
+	echo "  resourceGroupName is the resource group where the image will be stored"
+	echo "  targetstorageaccountname  is the storage account where the image will be stored"
+	echo "For production use -targetrgname RGMITBase -targetstorageaccountname mitbaseimages";
+	echo "For testing use    -targetrgname RGTestImages -targetstorageaccountname mittestimages"
+	exit;
+}
 
 Set-StrictMode -Version latest 
 
@@ -40,13 +49,11 @@ $mdiskURL = Grant-AzureRmDiskAccess -ResourceGroupName $sourcergname -DiskName $
 
 # Target information
 $ImageName = "MITImage" + $id;
-$targetrgname = "RGMITBase"
-$storageacccountname = "mitbaseimages"
 $containername = "images"
 
-$storageacccountkey = Get-AzureRmStorageAccountKey -ResourceGroupName $targetrgname -Name $storageacccountname
+$storageacccountkey = Get-AzureRmStorageAccountKey -ResourceGroupName $targetrgname -Name $targetstorageaccountname
  
-$storagectx = New-AzureStorageContext -StorageAccountName $storageacccountname -StorageAccountKey $storageacccountkey[0].Value
+$storagectx = New-AzureStorageContext -StorageAccountName $targetstorageaccountname -StorageAccountKey $storageacccountkey[0].Value
  
 $targetcontainer = New-AzureStorageContainer -Name $containername -Context $storagectx -Permission Blob
 $targetcontainer = Get-AzureStorageContainer -Name "images" -Context $storagectx
