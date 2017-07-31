@@ -1,0 +1,66 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachineSize": {
+      "value": "Standard_DS1_v2"
+    },
+    "adminUsername": {
+      "value": "winadmin"
+    },
+    "adminPassword": {
+      "value": "Ipswitch-1234"
+    },
+    "mi_publicHostname": {
+      "value": "mittest1bogus.micloudpoc.com"
+    },
+    "mi_sysadminPassword": {
+      "value": "A1s2d3f4"
+    },
+
+    "mi_emailTo": {
+      "value": "mriordan@ipswitch.com"
+    },
+    "mi_emailFrom": {
+      "value": "FromScriptmittest1@ipswitch.com"
+    },
+
+    "mi_smtpHost": {
+      "value": "smtp.sendgrid.net"
+    },
+    "mi_smtpPort": {
+      "value": "587"
+    },
+    "mi_smtpUsername": {
+      "value": "azure_1084a07fdb4e14fac9802dbafa90118c@azure.com"
+    },
+    "mi_smtpPassword": {
+      "value": "hiGrd5482"
+    },
+
+    "ci_custFirstName": {
+      "value": "Fake"
+    },
+    "ci_custLastName": {
+      "value": "Customer mittest1"
+    },
+    "ci_custCompanyName": {
+      "value": "Testing mittest1 solution template"
+    },
+    "ci_custEmail": {
+      "value": "fred@zyzzy.com"
+    },
+    "ci_custPhone": {
+      "value": "608-555-1234"
+    },
+    "ci_custCity": {
+      "value": ""
+    },
+    "ci_custState": {
+      "value": ""
+    },
+    "ci_custCountry": {
+      "value": "US"
+    }
+  }
+}
