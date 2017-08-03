@@ -85,7 +85,10 @@
     "myVersion": "latest",
 
     "myImageReference": {
-      "id": "[resourceId('RGWestUSImages', 'Microsoft.Compute/images','MITImage20170802125412')]"
+      "publisher": "[variables('myPublisher')]",
+      "offer": "[variables('myOffer')]",
+      "sku": "[variables('mySKU')]",
+      "version": "[variables('myVersion')]"
     },
 
     "myPlan": {
