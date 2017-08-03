@@ -85,10 +85,7 @@
     "myVersion": "latest",
 
     "myImageReference": {
-      "publisher": "[variables('myPublisher')]",
-      "offer": "[variables('myOffer')]",
-      "sku": "[variables('mySKU')]",
-      "version": "[variables('myVersion')]"
+      "id": "[resourceId('RGWestUSImages', 'Microsoft.Compute/images','MITImage20170802125412')]"
     },
 
     "myPlan": {
@@ -103,7 +100,6 @@
       "name": "[variables('virtualMachineName')]",
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2016-04-30-preview",
-      "plan": "[variables('myPlan')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
