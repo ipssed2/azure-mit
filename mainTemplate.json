@@ -158,7 +158,6 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "https://raw.githubusercontent.com/ipssed2/azure-mit/master/empty.txt"
               ]
             },
             "protectedSettings": {
