@@ -1255,6 +1255,7 @@
 
     ],
     "outputs": {
+      "location": "[location()]",
       "virtualMachineSize": "[steps('vmSettings').virtualMachineSize]",
       "adminUsername": "[steps('vmSettings').adminUsername]",
       "adminPassword": "[steps('vmSettings').adminPassword.password]",
