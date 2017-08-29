@@ -106,7 +106,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2017-03-30",
       "plan": "[variables('myPlan')]",
-      "location": "parameters('location')",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
       ],
@@ -146,7 +146,7 @@
           "apiVersion": "2015-06-15",
           "type": "extensions",
           "name": "CustomScriptExtension",
-          "location": "parameters('location')",
+          "location": "[parameters('location')]",
           "dependsOn": [
             "[concat('Microsoft.Compute/virtualMachines/', variables('virtualMachineName'))]"
           ],
@@ -173,7 +173,7 @@
       "name": "[variables('virtualNetworkName')]",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2016-12-01",
-      "location": "parameters('location')",
+      "location": "[parameters('location')]",
       "dependsOn": [
       ],
       "properties": {
@@ -196,7 +196,7 @@
       "name": "[variables('networkInterfaceName')]",
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2016-09-01",
-      "location": "parameters('location')",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]",
         "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
@@ -226,7 +226,7 @@
       "name": "[variables('publicIpAddressName')]",
       "type": "Microsoft.Network/publicIpAddresses",
       "apiVersion": "2016-09-01",
-      "location": "parameters('location')",
+      "location": "[parameters('location')]",
       "properties": {
         "publicIpAllocationMethod": "[variables('publicIpAddressType')]"
       }
@@ -235,7 +235,7 @@
       "name": "[variables('networkSecurityGroupName')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2016-09-01",
-      "location": "parameters('location')",
+      "location": "[parameters('location')]",
       "properties": {
         "securityRules": [
           {
