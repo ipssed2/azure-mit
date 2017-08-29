@@ -2,6 +2,9 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "location": {
+      "type": "string"
+    },
     "virtualMachineSize": {
       "type": "string"
     },
@@ -11,7 +14,6 @@
     "adminPassword": {
       "type": "securestring"
     },
-
 
     "mi_publicHostname": {
       "type": "string"
@@ -102,9 +104,9 @@
     {
       "name": "[variables('virtualMachineName')]",
       "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2016-04-30-preview",
+      "apiVersion": "2017-03-30",
       "plan": "[variables('myPlan')]",
-      "location": "[resourceGroup().location]",
+      "location": "parameters('location')",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
       ],
@@ -144,7 +146,7 @@
           "apiVersion": "2015-06-15",
           "type": "extensions",
           "name": "CustomScriptExtension",
-          "location": "[resourceGroup().location]",
+          "location": "parameters('location')",
           "dependsOn": [
             "[concat('Microsoft.Compute/virtualMachines/', variables('virtualMachineName'))]"
           ],
@@ -171,9 +173,8 @@
       "name": "[variables('virtualNetworkName')]",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2016-12-01",
-      "location": "[resourceGroup().location]",
+      "location": "parameters('location')",
       "dependsOn": [
-        "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]"
       ],
       "properties": {
         "addressSpace": {
@@ -195,7 +196,7 @@
       "name": "[variables('networkInterfaceName')]",
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2016-09-01",
-      "location": "[resourceGroup().location]",
+      "location": "parameters('location')",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]",
         "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
@@ -225,7 +226,7 @@
       "name": "[variables('publicIpAddressName')]",
       "type": "Microsoft.Network/publicIpAddresses",
       "apiVersion": "2016-09-01",
-      "location": "[resourceGroup().location]",
+      "location": "parameters('location')",
       "properties": {
         "publicIpAllocationMethod": "[variables('publicIpAddressType')]"
       }
@@ -234,7 +235,7 @@
       "name": "[variables('networkSecurityGroupName')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2016-09-01",
-      "location": "[resourceGroup().location]",
+      "location": "parameters('location')",
       "properties": {
         "securityRules": [
           {
